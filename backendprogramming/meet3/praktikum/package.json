@@ -1,0 +1,15 @@
+{
+  "name": "praktikum",
+  "version": "1.0.0",
+  "description": "this is praktikum",
+  "main": "(npminstall.js)",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Georgia Sugisandhea",
+  "license": "ISC",
+  "dependencies": {
+    "currency.js": "^2.0.4",
+    "dayjs": "^1.11.10"
+  }
+}

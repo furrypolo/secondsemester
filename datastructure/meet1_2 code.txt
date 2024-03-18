@@ -1,0 +1,149 @@
+//Kelas C_Tugas pertemuan 1
+//Eryca Dhamma Shanti_535230071
+//Georgia Sugisandhea_535230080
+//Brenda Abigail Han's Hartama_5352300194
+
+//question2_iterative
+import java.util.Scanner;
+
+public class question2_iterative {
+    public static void main(String[] args) throws Exception{
+        Scanner input = new Scanner(System.in);
+        System.out.print("a = ");
+        int a=input.nextInt();
+        System.out.println(" ");
+        System.out.print("b = ");
+        int b=input.nextInt();
+        System.out.println(" ");
+        genap(a,b);
+    }
+
+    public static void genap(int a, int b){
+        while(a<=b)
+        {
+            if(a%2 == 0)
+            {   
+                System.out.printf("%d ", a);
+            }
+            a++;
+        }
+    }
+}
+
+//question2_recursive
+import java.util.Scanner;
+
+public class question2_recursive {
+    public static void main(String[] args) throws Exception {
+        Scanner input = new Scanner(System.in);
+        System.out.print("a = ");
+        int a = input.nextInt();
+        System.out.println(" ");
+        System.out.print("b = ");
+        int b = input.nextInt();
+        System.out.println(" ");
+
+        genap(a,b);
+    }
+
+    public static void genap(int a, int b){
+        if(a<b)
+        {
+            int x=a%2;
+            if(x == 0)
+            {
+                int n=a+1;
+                System.out.print(a + " ");
+                genap(n,b);
+            }
+            else
+            {
+                int n=a+1;
+                genap(n,b);
+            }
+        }
+        else if(a==b)
+        {
+            int x=a%2;
+            if(x == 0)
+            {
+                System.out.print(a);
+            }
+    }
+}
+}
+
+//question5_iterative
+import java.util.Scanner;
+
+public class question5_iterative {
+
+    public static void main(String[] args) throws Exception{
+        Scanner input = new Scanner(System.in);
+        System.out.print("n= ");
+        int n = input.nextInt();
+        int[] a = new int[n+1];
+        int i, x;
+        int result=0;
+        System.out.println(" ");
+        for(i=0; i<=n; i++)
+        {
+            System.out.printf("%s%d%s", "a ke-", i, "= ");
+            x = input.nextInt();
+            a[i] = x;
+        }
+
+        result = fungsi(a, n);
+        System.out.print(result);
+    }
+
+    public static int fungsi(int[] a, int n){
+        int i;
+        int result=0;
+        for(i=0; i<=n; i++)
+        {
+            result+=a[i];
+        }
+        return result;
+    }
+}
+
+//question5_recursive
+import java.util.Scanner;
+
+public class question5_recursive {
+    
+    public static void main(String[] args) throws Exception{
+        Scanner input = new Scanner(System.in);
+        System.out.print("n= ");
+        int n = input.nextInt();
+        int[] a = new int[n+1];
+        int i;
+        System.out.println(" ");
+
+        for(i=0; i<=n; i++)
+        {
+            System.out.printf("%s%d%s", "a ke-", i, "= ");
+            a[i] = input.nextInt();
+        }
+
+        int t=0;
+        
+        int result=fungsi(a, n, t);
+        System.out.print(result);
+    }
+
+    public static int fungsi(int[] a, int n, int t)
+    {
+        if(t<=n)
+        {
+            int x=a[t] + fungsi(a, n, t+1);
+            return x;
+        }
+        else
+        {
+            return 0;
+        }
+    } 
+}
+
