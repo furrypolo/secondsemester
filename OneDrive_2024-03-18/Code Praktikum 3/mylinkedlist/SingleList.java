@@ -111,6 +111,14 @@ public class SingleList<T> {
         return n;
     }
 
+    public char getHead(){
+        Node<T> current = head;
+        char curr = (char) current.data;
+        this.pop();
+
+        return curr;
+    }
+
     //return bagian data dari node
     public T remove() {
         Node<T> n = pop();
@@ -152,6 +160,39 @@ public class SingleList<T> {
     public boolean isEmpty() {
         if(head == null) return true;
         else return false;
+    }
+
+    public void averageWait(double park, double time){
+        Node<T> curr = head;
+        double current = (int) curr.data;
+        double deque = 0;
+        double cars = 0;
+        double waitTime;
+        double sumTime=0;
+        // curr=curr.next;
+        // deque = (int) curr.data;
+        double overflow = park*time;
+        while (current != 999){
+            cars += 1;
+            if(current>deque){
+                deque = current;
+            }
+            waitTime = deque-current;
+            if(waitTime > overflow)
+            {
+                cars-=1;
+                deque -= time;
+            }
+            else
+            {
+                sumTime += waitTime;
+            }
+            curr = curr.next;
+            current = (int) curr.data;
+            deque += time;
+        }
+        double average = sumTime/cars;
+        System.out.printf("Rata rata waktu menunggu adalah %.4f menit", average);
     }
 }
 
