@@ -1,0 +1,22 @@
+meta {
+  name: getuser
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://localhost:5000/api/users?page_number=1&page_size=20&search=name:a&filter=email:desc
+  body: none
+  auth: none
+}
+
+query {
+  page_number: 1
+  page_size: 20
+  search: name:a
+  filter: email:desc
+}
+
+headers {
+  Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwidXNlcklkIjoiNjYyYTNmMDM2NTk3ODFjZDcxMTk3YWI5IiwiaWF0IjoxNzE0MjEwNjM0LCJleHAiOjE3MTQyOTcwMzR9.iwUF1WlvPMQiRYM-h0yH3dwIktPF9mCTIHMbxej5Fd4
+}

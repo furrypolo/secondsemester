@@ -21,37 +21,42 @@ class MyData {
 
 public class MainProgram {    
     public static void main(String[] args) {
-        // SingleList<Integer> carQ = new SingleList<>();
-        // carQ.pushQ(1);
-        // carQ.pushQ(4);
-        // carQ.pushQ(6);
-        // carQ.pushQ(9);
-        // carQ.pushQ(10);
-        // carQ.pushQ(14);
-        // carQ.pushQ(25);
-        // carQ.pushQ(27);
-        // carQ.pushQ(30);
-        // carQ.pushQ(38);
-        // carQ.pushQ(40);
-        // carQ.pushQ(47);
-        // carQ.pushQ(55);
-        // carQ.pushQ(58);
-        // carQ.pushQ(62);
-        // carQ.pushQ(999);
-        // carQ.cetakList();
+        //PR Praktikum 3a: no 1b queue (fungsi untuk menyelesaikan ada di file SingleList.java)
+        SingleList<Integer> carQ = new SingleList<>();
+        carQ.pushQ(1);
+        carQ.pushQ(4);
+        carQ.pushQ(6);
+        carQ.pushQ(9);
+        carQ.pushQ(10);
+        carQ.pushQ(14);
+        carQ.pushQ(25);
+        carQ.pushQ(27);
+        carQ.pushQ(30);
+        carQ.pushQ(38);
+        carQ.pushQ(40);
+        carQ.pushQ(47);
+        carQ.pushQ(55);
+        carQ.pushQ(58);
+        carQ.pushQ(62);
+        carQ.pushQ(999);
         
-        // carQ.averageWait(7.0, 12.0);
+        carQ.averageWait(7.0, 12.0);
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(" ");
 
+        //PR Praktikum 3b: no 1 Stack
         String postfix1 = infixToPostfix("(a+b*(c/(d-e)))+f/g");
-        System.out.println("a." + postfix1);
+        System.out.println("a. (a+b*(c/(d-e)))+f/g =>" + postfix1);
         String postfix2 = infixToPostfix("(a+b-c)*(d-e/(f+g))");
-        System.out.println("b." + postfix2);
+        System.out.println("b. (a+b-c)*(d-e/(f+g)) =>" + postfix2);
         String postfix3 = infixToPostfix("a-b*(c+d)/(e-f)+g");
-        System.out.println("c." + postfix3);
+        System.out.println("c. a-b*(c+d)/(e-f)+g =>" + postfix3);
         String postfix4 = infixToPostfix("a*(b-c)+d^e/f*g");
-        System.out.println("d." + postfix4);
+        System.out.println("d. a*(b-c)+d^e/f*g =>" + postfix4);
     }
 
+    //fungsi untuk menyelesaikan PR Praktikum 3b: no 1 Stack (infix to postfix) (Ditambah fungsi getHead() pada file SingleList.java)
     public static String infixToPostfix(String infix){
         SingleList<Character> operate = new SingleList<>();
         String result="";
@@ -133,8 +138,6 @@ public class MainProgram {
                     round=0;
                 }
             }
-
-            operate.cetakList();
         }
 
         if(!(operate.isEmpty())){

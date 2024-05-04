@@ -1,4 +1,4 @@
-package mylinkedlist;
+package strukdat;
 /*
  * Learning LinkedList Singular
  * head -> |10|o->|20|o->|30| <-o tail

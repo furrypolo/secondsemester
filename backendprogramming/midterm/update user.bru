@@ -1,0 +1,22 @@
+meta {
+  name: update user
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://localhost:5000/api/users/662a3f03659781cd71197ab9
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwidXNlcklkIjoiNjYyYTNmMDM2NTk3ODFjZDcxMTk3YWI5IiwiaWF0IjoxNzE0NTU1MTkzLCJleHAiOjE3MTQ2NDE1OTN9.3YyOIzshVsbpBFheD8UtruRuv-ywJy7vML_2XcgyTsk
+}
+
+body:json {
+  {
+    "name": "Administrator",
+    "email": "admin@example.com"
+  }
+}

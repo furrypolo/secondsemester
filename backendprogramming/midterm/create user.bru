@@ -1,0 +1,24 @@
+meta {
+  name: create user
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:5000/api/users/
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwidXNlcklkIjoiNjYyYTNmMDM2NTk3ODFjZDcxMTk3YWI5IiwiaWF0IjoxNzE0NTU2MDY5LCJleHAiOjE3MTQ2NDI0Njl9.iqWWGv3v9I-zXbp4zqFk_UrHFskdy2kiAmZhjH8LtT4
+}
+
+body:json {
+  {
+    "name": "Snoopy",
+    "email": "withmapeanuts@gmail.com",
+    "password": "L@y1ngonmyhouse",
+    "password_confirm": "L@y1ngonmyhouse"
+  }
+}
