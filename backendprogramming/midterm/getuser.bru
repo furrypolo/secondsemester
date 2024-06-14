@@ -5,18 +5,18 @@ meta {
 }
 
 get {
-  url: http://localhost:5000/api/users?page_number=1&page_size=20&search=name:a&filter=email:desc
+  url: http://localhost:5000/api/users?page_number=1&page_size=5&search=name:o&filter=email:asc
   body: none
   auth: none
 }
 
 query {
   page_number: 1
-  page_size: 20
-  search: name:a
-  filter: email:desc
+  page_size: 5
+  search: name:o
+  filter: email:asc
 }
 
 headers {
-  Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwidXNlcklkIjoiNjYyYTNmMDM2NTk3ODFjZDcxMTk3YWI5IiwiaWF0IjoxNzE0MjEwNjM0LCJleHAiOjE3MTQyOTcwMzR9.iwUF1WlvPMQiRYM-h0yH3dwIktPF9mCTIHMbxej5Fd4
+  Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwidXNlcklkIjoiNjYyYTNmMDM2NTk3ODFjZDcxMTk3YWI5IiwiaWF0IjoxNzE0ODI0NjA2LCJleHAiOjE3MTQ5MTEwMDZ9.2O3IUAi9-Ei298FMcOJzObV2uKyaZ11Lf6wvJE6StFk
 }

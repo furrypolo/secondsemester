@@ -1,0 +1,27 @@
+meta {
+  name: create user
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:5000/api/polocash/
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN1ZHNvYXB5QGVtYWlsLmNvbSIsInVzZXJJZCI6IjY2MzY1ZjhkNGVkMTExN2I4MzRkYTI4NyIsImlhdCI6MTcxNDg0MDE0MiwiZXhwIjoxNzE0OTI2NTQyfQ._EiuVE7jMqqlTVC9xz0qqIb4wQKOfvwhJ4nlBxJ09MA
+}
+
+body:json {
+  {
+    "name": "Sushi Octopus",
+    "email": "crocheted@email.com",
+    "password": "Cro191",
+    "password_confirm": "Cro191",
+    "pin": "123123",
+    "pin_confirm": "123123",
+    "balance": 3000
+  }
+}

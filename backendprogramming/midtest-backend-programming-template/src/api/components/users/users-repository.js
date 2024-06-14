@@ -64,6 +64,7 @@ async function updateUser(id, name, email) {
 }
 
 async function updateAttempt(id, attempt, last_attempt) {
+  console.log('in the updating');
   console.log(id);
   console.log(attempt);
   console.log(last_attempt);
@@ -77,7 +78,9 @@ async function updateAttempt(id, attempt, last_attempt) {
         last_attempt,
       },
     }
-  );
+  ).then((token) => {
+    return token;
+  });
 }
 
 /**

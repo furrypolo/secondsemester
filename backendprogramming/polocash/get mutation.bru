@@ -1,0 +1,21 @@
+meta {
+  name: get mutation
+  type: http
+  seq: 7
+}
+
+get {
+  url: http://localhost:5000/api/polocash/getMutation/6637287b78475faae1d5103d
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pbGthbmRob25leUBlbWFpbC5jb20iLCJ1c2VySWQiOiI2NjM3NDdlY2NlZmMzMTY5OTYzNzExMzIiLCJpYXQiOjE3MTQ5MDEwODEsImV4cCI6MTcxNDk4NzQ4MX0.UNJa6LN46VuBzbsBs0JTAsCwUWkjv06qkC1V1-bU36Y
+}
+
+body:json {
+  {
+    "pin": "171217"
+  }
+}

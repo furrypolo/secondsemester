@@ -1,0 +1,432 @@
+//Kelompok 4
+//Eryca Dhamma Shanti - 535230071
+//Georgia Sugisandhea - 535230080
+//Brenda Abigail Han's Hartama - 535230194
+
+//output untuk pengerjaan soal slide 33 ppt dengan code
+
+PS C:\Users\Lenovo\repos\secondsemester\datastructure\meet11>  c:; cd 'c:\Users\Lenovo\repos\secondsemester\datastructure\meet11'; & 'C:\Program Files\Java\jdk-21\bin\java.exe' '-XX:+ShowCodeDetailsInExceptionMessages' '-cp' 'C:\Users\Lenovo\AppData\Roaming\Code\User\workspaceStorage\67e1c3848a8c07d9e132b528fe06f0d3\redhat.java\jdt_ws\meet11_e2a31d65\bin' 'MainProgram' 
+Undirected Graph:
+7 : (3,1)(4,1)
+9 : (5,1)
+4 : (1,1)(2,1)(7,1)(8,1)
+5 : (2,1)(8,1)(9,1)
+3 : (1,1)(6,1)(7,1)
+2 : (4,1)(5,1)
+8 : (4,1)(5,1)
+6 : (3,1)
+1 : (3,1)(4,1)
+Breadth First Search:
+1 3 4 6 7 2 8 5 9
+Depth First Search:
+1 3 6 7 4 2 5 8 9
+Pemutusan edge antara 1 dan 3
+7 : (3,1)(4,1)
+9 : (5,1)
+4 : (1,1)(2,1)(7,1)(8,1)
+5 : (2,1)(8,1)(9,1)
+3 : (6,1)(7,1)
+2 : (4,1)(5,1)
+8 : (4,1)(5,1)
+6 : (3,1)
+1 : (4,1)
+PS C:\Users\Lenovo\repos\secondsemester\datastructure\meet11> 
+
+//MainProgram.java
+import strukdat.WeightedGraph;
+
+class MyVertex{
+	String nodeName;
+	MyVertex(String name)
+	{
+		this.nodeName = name;
+	}
+
+    @Override
+    public String toString() {
+        return (nodeName);
+    }
+}
+
+
+public class MainProgram {
+    public static void main(String[] args) {
+        //create vertex
+        MyVertex v1 = new MyVertex("1");
+        MyVertex v2 = new MyVertex("2");
+        MyVertex v3 = new MyVertex("3");
+        MyVertex v4 = new MyVertex("4");
+        MyVertex v5 = new MyVertex("5");
+        MyVertex v6 = new MyVertex("6");
+        MyVertex v7 = new MyVertex("7");
+        MyVertex v8 = new MyVertex("8");
+        MyVertex v9 = new MyVertex("9");
+
+        WeightedGraph<MyVertex> WG = new WeightedGraph<MyVertex>(false); //undirected
+        WG.addEdge(v1, v3, 1);
+        WG.addEdge(v1, v4, 1);
+        WG.addEdge(v2, v4, 1);
+        WG.addEdge(v2, v5, 1);
+        WG.addEdge(v3, v6, 1);
+        WG.addEdge(v3, v7, 1);
+        WG.addEdge(v4, v7, 1);
+        WG.addEdge(v4, v8, 1);
+        WG.addEdge(v5, v8, 1);
+        WG.addEdge(v5, v9, 1);
+
+        System.out.println("Undirected Graph:"); WG.printGraph();
+
+        WG.BFS(v1);
+        WG.DFS(v1);
+
+        System.out.println("Pemutusan edge antara 1 dan 3");
+        WG.removeEdge(v1, v3);
+        WG.printGraph();
+    }
+}
+
+//WeightedGraph.java
+
+package strukdat;
+/* 
+ * Struktur data Graph dengan bobot pada setiap edge
+ * sources: https://www.lavivienpost.net/weighted-graph-as-adjacency-list/  
+ * 
+ */
+
+import java.util.*;
+
+public class WeightedGraph<T> { 
+    //Map<T, LinkedList<Edge<T>>> adj;
+	private Map<T, SingleList<Edge<T>>> adj;
+	boolean directed;
+	
+	//Constructor, Time O(1) Space O(1)
+	public WeightedGraph (boolean type) { 
+        adj = new HashMap<>();
+		directed = type; // false: undirected, true: directed
+	}
+
+    //Add edges including adding nodes, Time O(1) Space O(1)
+	public void addEdge(T a, T b, int w) {
+		adj.putIfAbsent(a, new SingleList<>()); //add node
+		adj.putIfAbsent(b, new SingleList<>()); //add node
+		Edge<T> edge1 = new Edge<>(b, w);
+		adj.get(a).pushQ(edge1);//add(edge1); //add edge
+		if (!directed) { //undirected
+			Edge<T> edge2 = new Edge<>(a, w);
+			adj.get(b).pushQ(edge2);
+		}			
+	}
+
+    //Print graph as hashmap, Time O(V+E), Space O(1)
+	public void printGraph() {
+		for (T key: adj.keySet()) {
+			//System.out.println(key.toString() + " : " + adj.get(key).toString());
+            System.out.print(key.toString() + " : ");
+			SingleList<Edge<T>> thelist = adj.get(key);
+			Node<Edge<T>> curr = thelist.head;
+			while(curr != null) {
+				System.out.print(curr.data);
+				curr = curr.next;
+			}
+			System.out.println();
+		}
+	}
+
+	public SingleList<Edge<T>> getNeighbors(T vertex){
+		return adj.get(vertex);
+	}
+
+	public void BFS(T vertex){
+		System.out.println("Breadth First Search: ");
+		Queue<T> queue = new LinkedList<>();
+		Set<T> visited = new HashSet<>();
+		
+		queue.add(vertex);
+		visited.add(vertex);
+
+		while(!queue.isEmpty()){
+			T currentV = queue.poll();
+			System.out.print(currentV + " ");
+			SingleList<Edge<T>> neighbors = getNeighbors(currentV);
+			Node<Edge<T>> current = neighbors.head;
+			while(current != null){
+				T neighbor = current.data.neighbor;
+				if(!visited.contains(neighbor)){
+					queue.add(neighbor);
+					visited.add(neighbor);
+				}
+				current = current.next;
+			}		
+		}
+		System.out.println(" ");
+}
+
+public void DFS(T src) {
+	System.out.println("Depth First Search:");
+	if (!adj.containsKey(src))
+		return;
+	Set<T> visited = new HashSet<>();
+	helper(src, visited);
+	System.out.println();
+}
+
+private void helper(T v, Set<T> visited) {
+	visited.add(v);
+	System.out.print(v.toString() + " ");
+	SingleList<Edge<T>> thelist = adj.get(v);
+	Node<Edge<T>> curr = thelist.head;
+	while(curr != null) {
+		T u = curr.data.neighbor;
+		if (!visited.contains(u))
+			helper(u, visited);
+		curr = curr.next;
+	}
+}
+
+	public void removeEdge(T a, T b) {
+		SingleList<Edge<T>> neighbors = getNeighbors(a);
+		Node<Edge<T>> current = neighbors.head;
+		while(current != null){
+			T neighbor = current.data.neighbor;
+			if(neighbor == b){
+				adj.get(a).remove(current.data);
+				break;
+			}
+			current = current.next;
+		}
+		neighbors = getNeighbors(b);
+		current = neighbors.head;
+		while(current != null){
+			T neighbor = current.data.neighbor;
+			if(neighbor == a){
+				adj.get(b).remove(current.data);
+				break;
+			}
+			current = current.next;
+		}		
+	}
+
+}
+
+//Edge.java
+// Source code is decompiled from a .class file using FernFlower decompiler.
+package strukdat;
+
+public class Edge<T> { 
+	public T neighbor; //connected vertex
+	Integer weight; //weight
+	
+	//Constructor, Time O(1) Space O(1)
+	public Edge(T v, int w) {
+		this.neighbor = v; 
+		this.weight = w;
+	}
+
+	public Edge<T> getEdge(){
+		return this;
+	}
+	
+	//Time O(1) Space O(1)
+	@Override
+	public String toString() {
+		return "(" + neighbor + "," + weight + ")";
+	}
+}
+
+//Node.java
+package strukdat;
+
+import java.util.*;
+
+public class Node<T> {
+    /*
+     * class untuk mendefinisikan satu node di linkedlist secara generic
+     * [data | next]   
+     * data = bagian node yang berisi informasi (teks, bilangan, object of a class)
+     * next = bagian node yang berisi alamat (pointer) ke node lainnya
+     */
+
+    public T data;
+    public Node<T> next;
+    boolean visited;
+    private List<Node<T>> neighbors = new LinkedList<>();
+
+    //constructor
+    public Node(T value) {
+        data = value;
+        next = null;
+        visited = false;
+    }
+
+    public void setVisited(boolean b) {
+        this.visited = b;
+    }
+
+    public Collection<? extends Node<T>> getNeighbors() {
+        return neighbors;
+    }
+
+    public boolean isVisited(){
+        return visited;
+    }
+}
+
+//SingleList.java
+package strukdat;
+/*
+ * Learning LinkedList Singular
+ * head -> |10|o->|20|o->|30| <-o tail
+ * 
+ * @author: Lely Hiryanto
+ */
+
+
+import java.util.*;
+import strukdat.Node;
+
+public class SingleList<T> {
+    public Node<T> head;
+    Node<T> tail;
+
+    //constructor
+    public SingleList() {
+        head = null;
+        tail = null;
+    }
+
+    // Menyisipkan setiap node baru yang dibuat di akhir list
+    public void pushQ(T value) {
+        //buat node baru
+		Node<T> newNode = new Node<T>(value);
+        //jika list kosong, head dan tail sama-sama menunjuk ke node pertama
+		if (head == null) {
+            head = newNode;
+            tail = newNode;
+        }
+        //jika tidak kosong, tail diupdate untuk menunjuk ke node baru
+		else {
+			tail.next = newNode;
+            tail = newNode;
+		}
+	}
+
+    // Meletakkan setiap node baru yang dibuat di awal list (stack)
+    public void pushS(T value) {
+        //buat node baru
+		Node<T> newNode = new Node<T>(value);
+        //jika list kosong, head dan tail sama-sama menunjuk ke node pertama
+		if (head == null) {
+			head = newNode;
+			tail = newNode;
+		}
+        //jika tidak kosong, node baru menunjuk ke node pertama di list
+        //head diupdate untuk menunjuk ke node baru
+		else {
+            newNode.next = head;
+			head = newNode;
+		}
+	}
+
+    //Mencetak bagian informasi dari setiap node di linkedlist
+    public void cetakList() {
+        //set pointer curr untuk menunjuk ke node pertama (node pertama yang ditunjuk oleh head)
+		Node<T> curr = head;
+        //jika list kosong, tampilkan pesan list kosong
+		if(curr == null) System.out.println("List kosong!");
+        /*
+         * jika list tidak kosong, maka cetak bagian informasi 
+           dari setiap node yang dikunjungi. 
+        */
+		else {
+            System.out.print("[ ");
+			while(curr != null) {
+				System.out.print(curr.data.toString() + " ");
+                /*
+                 * curr diupdate untuk menunjuk ke node selanjutnya
+                 * sampai curr null, dimana curr diset ke bagian 'next' 
+                 * dari node terakhir yang bernilai null. Artinya, 
+                 * pointer curr sudah ada di akhir list.
+                 */
+				curr = curr.next;
+			}
+		}
+        System.out.println("]");
+	}
+
+
+    //Mengambil dan menghapus elemen pertama di queue dan stack
+    public Node<T> pop() {
+        Node<T> n;
+        if(head == null) n = null;
+        else {
+            n = head;
+            head = head.next;
+            if (head == null) {
+                tail = null;
+            }   
+        }
+        return n;
+    }
+
+    public T popT() {
+        T n;
+        if(head == null) n = null;
+        else {
+            n = head.data;
+            head = head.next;
+            if (head == null) {
+                tail = null;
+            }   
+        }
+        return n;
+    }
+
+    //return bagian data dari node
+    public T remove() {
+        Node<T> n = pop();
+        if(n == null) return null;
+        else return n.data;
+    }
+
+    //@overloading method remove()
+    public boolean remove(T b) {
+        Node<T> curr = head;
+        Node<T> prev = head;
+        boolean deleted = false;
+
+        while(curr != null && !deleted) {
+            // jika setiap elemen dari data sama
+            // dengan data yang dicari
+            if(curr.data.equals(b)) {
+                deleted = true;
+                //node sebelum dilink ke node berikut dari node yang diremove
+                prev.next = curr.next; 
+                //jika node pertama yang diremove, update head ke node kedua
+                if(curr == head) head = head.next;
+                //jika list hanya memiliki satu nod, set head = null (list kosong)         
+                if(head == null) tail = null;
+            }
+            //jika belum ditemukan node yang akan diremove
+            //simpan pointer ke node saat ini, dan update
+            //pointer ke node berikutnya
+            else {
+                prev = curr;
+                curr = curr.next;
+            }
+        }
+
+        return deleted;
+    }
+
+    //mengecek apakah list kosong atau tidak
+    public boolean isEmpty() {
+        if(head == null) return true;
+        else return false;
+    }
+}
+
+
+
+

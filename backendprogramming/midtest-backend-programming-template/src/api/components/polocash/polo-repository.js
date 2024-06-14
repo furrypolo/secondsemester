@@ -6,8 +6,9 @@ async function getUser(id) {
 }
 
 async function createAccount(name, email, password, pin, balance) {
+  console.log('inside repos');
   let attempt = 0;
-  return polouser.create({
+  const success = polouser.create({
     name,
     email,
     password,
@@ -15,9 +16,21 @@ async function createAccount(name, email, password, pin, balance) {
     balance,
     attempt,
   });
+  console.log(success);
+  return success.then((token) => {
+    return token;
+  });
+}
+
+async function findbyEmail(email) {
+  console.log('finding by email in repos');
+  return polouser.findOne({ email }).then((token) => {
+    return token;
+  });
 }
 
 module.exports = {
   getUser,
   createAccount,
+  findbyEmail,
 };

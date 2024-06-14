@@ -8,6 +8,7 @@ const usersSchema = {
 
 const polousersSchema = {
   name: String,
+  email: String,
   password: String,
   pin: Number,
   balance: Number,
@@ -20,4 +21,8 @@ const historySchema = {
   from_to: String,
 };
 
-module.exports = usersSchema;
+module.exports = {
+  usersSchema,
+  polousersSchema,
+  historySchema,
+};

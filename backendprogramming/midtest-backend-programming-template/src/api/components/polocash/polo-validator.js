@@ -1,3 +1,7 @@
+const joi = require('joi');
+const { joiPasswordExtendCore } = require('joi-password');
+const joiPassword = joi.extend(joiPasswordExtendCore);
+
 module.exports = {
   getBalance: {
     body: {
@@ -12,7 +16,6 @@ module.exports = {
       email: joi.string().email().required().label('Email'),
       password: joiPassword
         .string()
-        .minOfSpecialCharacters(1)
         .minOfLowercase(1)
         .minOfUppercase(1)
         .minOfNumeric(1)
@@ -23,8 +26,15 @@ module.exports = {
         .required()
         .label('Password'),
       password_confirm: joi.string().required().label('Password confirmation'),
-      pin: joiPassword.number().min(6).max(6).required().label('Pin'),
-      pin_confirm: joi.number().required().label('Pin confirmation'),
+      pin: joiPassword
+        .string()
+        .minOfNumeric(6)
+        .min(6)
+        .max(6)
+        .required()
+        .label('Pin'),
+      pin_confirm: joi.string().required().label('Pin confirmation'),
+      balance: joi.number().required().label('Balance'),
     },
   },
 };

@@ -1,0 +1,23 @@
+meta {
+  name: transfer
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://localhost:5000/api/polocash/transfer/6637474bcefc316996371128
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN1ZHNvYXB5QGVtYWlsLmNvbSIsInVzZXJJZCI6IjY2MzY1ZjhkNGVkMTExN2I4MzRkYTI4NyIsImlhdCI6MTcxNDg4NDMyNiwiZXhwIjoxNzE0OTcwNzI2fQ.6Gaee2nLwkx7GPUlfBii4rywDW14aPsB-EJpbrn72E8
+}
+
+body:json {
+  {
+    "to_id": "663747eccefc316996371132",
+    "amount": 100,
+    "pin": "098765"
+  }
+}

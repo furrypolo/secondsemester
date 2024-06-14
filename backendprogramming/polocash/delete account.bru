@@ -1,0 +1,22 @@
+meta {
+  name: delete account
+  type: http
+  seq: 6
+}
+
+delete {
+  url: http://localhost:5000/api/polocash/deleteAcc/663730bc1fabcdb5dff1f71f
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN1ZHNvYXB5QGVtYWlsLmNvbSIsInVzZXJJZCI6IjY2MzY1ZjhkNGVkMTExN2I4MzRkYTI4NyIsImlhdCI6MTcxNDg4NDMyNiwiZXhwIjoxNzE0OTcwNzI2fQ.6Gaee2nLwkx7GPUlfBii4rywDW14aPsB-EJpbrn72E8
+}
+
+body:json {
+  {
+    "password": "PoC111",
+    "deleted_id": "6637767620ead9587e1cba17"
+  }
+}

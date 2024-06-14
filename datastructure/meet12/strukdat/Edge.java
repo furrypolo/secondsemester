@@ -1,0 +1,59 @@
+// Source code is decompiled from a .class file using FernFlower decompiler.
+package strukdat;
+
+import java.util.Objects;
+
+public class Edge<T> { 
+	T vertex;
+	public T neighbor; //connected vertex
+	Integer weight; //weight
+
+	
+	//Constructor, Time O(1) Space O(1)
+	public Edge(T u, T v, int w) {
+		this.vertex = u;
+		this.neighbor = v; 
+		this.weight = w;
+	}
+
+	public Edge<T> getEdge(){
+		return this;
+	}
+
+	public int getWeight() {
+        return weight;
+    }
+	
+	public T getVertex() {
+		return vertex;
+	}
+
+	public T getNeighbor(){
+		return neighbor;
+	}
+
+	public int compareWeight(Edge<T> other){
+		return this.weight - other.getWeight();
+	}
+
+	 @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Edge<?> edge = (Edge<?>) o;
+        return weight == edge.weight && vertex.equals(edge.vertex) && neighbor.equals(edge.neighbor);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(vertex, neighbor, weight);
+    }
+
+	
+	//Time O(1) Space O(1)
+	@Override
+	public String toString() {
+		return "(" + vertex + "," + neighbor + "," + weight + ")";
+	}
+
+}
