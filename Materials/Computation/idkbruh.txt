@@ -1,0 +1,522 @@
+A,B
+A,D
+A,H
+B,C
+B,A
+C,D
+C,F
+D,E
+E,J
+E,A
+F,G
+F,B
+G,C
+H,A
+H,K
+H,I
+I,E
+J,D
+K,H
+K,S
+K,L
+L,M
+M,S
+M,N
+N,O
+O,P
+P,R
+P,Q
+Q,K
+R,Q
+S,T
+T,U
+T,B
+U,V
+U,T
+V,W
+W,X
+X,U
+X,Y
+Y,Z
+Z,T
+
+I have this vertex and edges, which is directed edge where the direction is the first vertex to the second vertex input. The number is the weight of the edge. Would you give me the answer of using dijkstra method, calculate the shortest path from each vertex to each vertex (if possible), and show me the path and the weight
+
+Shortest path from A to B: A -> B with weight 1
+Shortest path from A to C: A -> B -> C with weight 2
+Shortest path from A to D: A -> D with weight 1
+Shortest path from A to E: A -> D -> E with weight 2
+Shortest path from A to F: A -> B -> C -> F with weight 3
+Shortest path from A to G: A -> B -> C -> F -> G with weight 4
+Shortest path from A to H: A -> H with weight 1
+Shortest path from A to I: A -> H -> I with weight 2
+Shortest path from A to J: A -> D -> E -> J with weight 3
+Shortest path from A to K: A -> H -> K with weight 2
+Shortest path from A to L: A -> H -> K -> L with weight 3
+Shortest path from A to M: A -> H -> K -> L -> M with weight 4
+Shortest path from A to N: A -> H -> K -> L -> M -> N with weight 5
+Shortest path from A to O: A -> H -> K -> L -> M -> N -> O with weight 6
+Shortest path from A to P: A -> H -> K -> L -> M -> N -> O -> P with weight 7
+Shortest path from A to Q: A -> H -> K -> L -> M -> N -> O -> P -> Q with weight 8
+Shortest path from A to R: A -> H -> K -> L -> M -> N -> O -> P -> R with weight 8
+Shortest path from A to S: A -> H -> K -> S with weight 3
+Shortest path from A to T: A -> H -> K -> S -> T with weight 4
+Shortest path from A to U: A -> H -> K -> S -> T -> U with weight 5
+Shortest path from A to V: A -> H -> K -> S -> T -> U -> V with weight 6
+Shortest path from A to W: A -> H -> K -> S -> T -> U -> V -> W with weight 7
+Shortest path from A to X: A -> H -> K -> S -> T -> U -> V -> W -> X with weight 8
+Shortest path from A to Y: A -> H -> K -> S -> T -> U -> V -> W -> X -> Y with weight 9
+Shortest path from A to Z: A -> H -> K -> S -> T -> U -> V -> W -> X -> Y -> Z with weight 10
+
+Shortest path from B to A: B -> A with weight 1
+Shortest path from B to C: B -> C with weight 1
+Shortest path from B to D: B -> C -> D with weight 2
+Shortest path from B to E: B -> C -> D -> E with weight 3
+Shortest path from B to F: B -> C -> F with weight 2
+Shortest path from B to G: B -> C -> F -> G with weight 3
+Shortest path from B to H: B -> A -> H with weight 2
+Shortest path from B to I: B -> A -> H -> I with weight 3
+Shortest path from B to J: B -> C -> D -> E -> J with weight 4
+Shortest path from B to K: B -> A -> H -> K with weight 3
+Shortest path from B to L: B -> A -> H -> K -> L with weight 4
+Shortest path from B to M: B -> A -> H -> K -> L -> M with weight 5
+Shortest path from B to N: B -> A -> H -> K -> L -> M -> N with weight 6
+Shortest path from B to O: B -> A -> H -> K -> L -> M -> N -> O with weight 7
+Shortest path from B to P: B -> A -> H -> K -> L -> M -> N -> O -> P with weight 8
+Shortest path from B to Q: B -> A -> H -> K -> L -> M -> N -> O -> P -> Q with weight 9
+Shortest path from B to R: B -> A -> H -> K -> L -> M -> N -> O -> P -> R with weight 9
+Shortest path from B to S: B -> A -> H -> K -> S with weight 4
+Shortest path from B to T: B -> T with weight 1
+Shortest path from B to U: B -> T -> U with weight 2
+Shortest path from B to V: B -> T -> U -> V with weight 3
+Shortest path from B to W: B -> T -> U -> V -> W with weight 4
+Shortest path from B to X: B -> T -> U -> V -> W -> X with weight 5
+Shortest path from B to Y: B -> T -> U -> V -> W -> X -> Y with weight 6
+Shortest path from B to Z: B -> T -> U -> V -> W -> X -> Y -> Z with weight 7
+
+Shortest path from C to A: C -> D -> E -> A with weight 3
+Shortest path from C to B: C -> F -> B with weight 2
+Shortest path from C to D: C -> D with weight 1
+Shortest path from C to E: C -> D -> E with weight 2
+Shortest path from C to F: C -> F with weight 1
+Shortest path from C to G: C -> F -> G with weight 2
+Shortest path from C to H: C -> D -> E -> A -> H with weight 4
+Shortest path from C to I: C -> D -> E -> A -> H -> I with weight 5
+Shortest path from C to J: C -> D -> E -> J with weight 3
+Shortest path from C to K: C -> D -> E -> A -> H -> K with weight 5
+Shortest path from C to L: C -> D -> E -> A -> H -> K -> L with weight 6
+Shortest path from C to M: C -> D -> E -> A -> H -> K -> L -> M with weight 7
+Shortest path from C to N: C -> D -> E -> A -> H -> K -> L -> M -> N with weight 8
+Shortest path from C to O: C -> D -> E -> A -> H -> K -> L -> M -> N -> O with weight 9
+Shortest path from C to P: C -> D -> E -> A -> H -> K -> L -> M -> N -> O -> P with weight 10
+Shortest path from C to Q: C -> D -> E -> A -> H -> K -> L -> M -> N -> O -> P -> Q with weight 11
+Shortest path from C to R: C -> D -> E -> A -> H -> K -> L -> M -> N -> O -> P -> R with weight 11
+Shortest path from C to S: C -> D -> E -> A -> H -> K -> S with weight 6
+Shortest path from C to T: C -> D -> E -> A -> H -> K -> S -> T with weight 7
+Shortest path from C to U: C -> D -> E -> A -> H -> K -> S -> T -> U with weight 8
+Shortest path from C to V: C -> D -> E -> A -> H -> K -> S -> T -> U -> V with weight 9
+Shortest path from C to W: C -> D -> E -> A -> H -> K -> S -> T -> U -> V -> W with weight 10
+Shortest path from C to X: C -> D -> E -> A -> H -> K -> S -> T -> U -> V -> W -> X with weight 11
+Shortest path from C to Y: C -> D -> E -> A -> H -> K -> S -> T -> U -> V -> W -> X -> Y with weight 12
+Shortest path from C to Z: C -> D -> E -> A -> H -> K -> S -> T -> U -> V -> W -> X -> Y -> Z with weight 13
+
+Shortest path from D to A: D -> E -> A with weight 2
+Shortest path from D to B: D -> E -> A -> B with weight 3
+Shortest path from D to C: D -> E -> A -> B -> C with weight 4
+Shortest path from D to E: D -> E with weight 1
+Shortest path from D to F: D -> E -> A -> B -> C -> F with weight 5
+Shortest path from D to G: D -> E -> A -> B -> C -> F -> G with weight 6
+Shortest path from D to H: D -> E -> A -> H with weight 3
+Shortest path from D to I: D -> E -> A -> H -> I with weight 4
+Shortest path from D to J: D -> E -> J with weight 2
+Shortest path from D to K: D -> E -> A -> H -> K with weight 4
+Shortest path from D to L: D -> E -> A -> H -> K -> L with weight 5
+Shortest path from D to M: D -> E -> A -> H -> K -> L -> M with weight 6
+Shortest path from D to N: D -> E -> A -> H -> K -> L -> M -> N with weight 7
+Shortest path from D to O: D -> E -> A -> H -> K -> L -> M -> N -> O with weight 8
+Shortest path from D to P: D -> E -> A -> H -> K -> L -> M -> N -> O -> P with weight 9
+Shortest path from D to Q: D -> E -> A -> H -> K -> L -> M -> N -> O -> P -> Q with weight 10
+Shortest path from D to R: D -> E -> A -> H -> K -> L -> M -> N -> O -> P -> R with weight 10
+Shortest path from D to S: D -> E -> A -> H -> K -> S with weight 5
+Shortest path from D to T: D -> E -> A -> H -> K -> S -> T with weight 6
+Shortest path from D to U: D -> E -> A -> H -> K -> S -> T -> U with weight 7
+Shortest path from D to V: D -> E -> A -> H -> K -> S -> T -> U -> V with weight 8
+Shortest path from D to W: D -> E -> A -> H -> K -> S -> T -> U -> V -> W with weight 9
+Shortest path from D to X: D -> E -> A -> H -> K -> S -> T -> U -> V -> W -> X with weight 10
+Shortest path from D to Y: D -> E -> A -> H -> K -> S -> T -> U -> V -> W -> X -> Y with weight 11
+Shortest path from D to Z: D -> E -> A -> H -> K -> S -> T -> U -> V -> W -> X -> Y -> Z with weight 12
+
+Shortest path from E to A: E -> A with weight 1
+Shortest path from E to B: E -> A -> B with weight 2
+Shortest path from E to C: E -> A -> B -> C with weight 3
+Shortest path from E to D: E -> A -> B -> C -> D with weight 4
+Shortest path from E to F: E -> A -> B -> C -> F with weight 4
+Shortest path from E to G: E -> A -> B -> C -> F -> G with weight 5
+Shortest path from E to H: E -> A -> H with weight 2
+Shortest path from E to I: E -> A -> H -> I with weight 3
+Shortest path from E to J: E -> J with weight 1
+Shortest path from E to K: E -> A -> H -> K with weight 3
+Shortest path from E to L: E -> A -> H -> K -> L with weight 4
+Shortest path from E to M: E -> A -> H -> K -> L -> M with weight 5
+Shortest path from E to N: E -> A -> H -> K -> L -> M -> N with weight 6
+Shortest path from E to O: E -> A -> H -> K -> L -> M -> N -> O with weight 7
+Shortest path from E to P: E -> A -> H -> K -> L -> M -> N -> O -> P with weight 8
+Shortest path from E to Q: E -> A -> H -> K -> L -> M -> N -> O -> P -> Q with weight 9
+Shortest path from E to R: E -> A -> H -> K -> L -> M -> N -> O -> P -> R with weight 9
+Shortest path from E to S: E -> A -> H -> K -> S with weight 4
+Shortest path from E to T: E -> A -> H -> K -> S -> T with weight 5
+Shortest path from E to U: E -> A -> H -> K -> S -> T -> U with weight 6
+Shortest path from E to V: E -> A -> H -> K -> S -> T -> U -> V with weight 7
+Shortest path from E to W: E -> A -> H -> K -> S -> T -> U -> V -> W with weight 8
+Shortest path from E to X: E -> A -> H -> K -> S -> T -> U -> V -> W -> X with weight 9
+Shortest path from E to Y: E -> A -> H -> K -> S -> T -> U -> V -> W -> X -> Y with weight 10
+Shortest path from E to Z: E -> A -> H -> K -> S -> T -> U -> V -> W -> X -> Y -> Z with weight 11
+
+Shortest path from F to A: F -> B -> A with weight 2
+Shortest path from F to B: F -> B with weight 1
+Shortest path from F to C: F -> B -> C with weight 2
+Shortest path from F to D: F -> B -> C -> D with weight 3
+Shortest path from F to E: F -> B -> C -> D -> E with weight 4
+Shortest path from F to G: F -> G with weight 1
+Shortest path from F to H: F -> B -> A -> H with weight 3
+Shortest path from F to I: F -> B -> A -> H -> I with weight 4
+Shortest path from F to J: F -> B -> C -> D -> E -> J with weight 5
+Shortest path from F to K: F -> B -> A -> H -> K with weight 4
+Shortest path from F to L: F -> B -> A -> H -> K -> L with weight 5
+Shortest path from F to M: F -> B -> A -> H -> K -> L -> M with weight 6
+Shortest path from F to N: F -> B -> A -> H -> K -> L -> M -> N with weight 7
+Shortest path from F to O: F -> B -> A -> H -> K -> L -> M -> N -> O with weight 8
+Shortest path from F to P: F -> B -> A -> H -> K -> L -> M -> N -> O -> P with weight 9
+Shortest path from F to Q: F -> B -> A -> H -> K -> L -> M -> N -> O -> P -> Q with weight 10
+Shortest path from F to R: F -> B -> A -> H -> K -> L -> M -> N -> O -> P -> R with weight 10
+Shortest path from F to S: F -> B -> A -> H -> K -> S with weight 5
+Shortest path from F to T: F -> B -> T with weight 2
+Shortest path from F to U: F -> B -> T -> U with weight 3
+Shortest path from F to V: F -> B -> T -> U -> V with weight 4
+Shortest path from F to W: F -> B -> T -> U -> V -> W with weight 5
+Shortest path from F to X: F -> B -> T -> U -> V -> W -> X with weight 6
+Shortest path from F to Y: F -> B -> T -> U -> V -> W -> X -> Y with weight 7
+Shortest path from F to Z: F -> B -> T -> U -> V -> W -> X -> Y -> Z with weight 8
+
+Shortest path from G to A: G -> C -> D -> E -> A with weight 4
+Shortest path from G to B: G -> C -> F -> B with weight 3
+Shortest path from G to C: G -> C with weight 1
+Shortest path from G to D: G -> C -> D with weight 2
+Shortest path from G to E: G -> C -> D -> E with weight 3
+Shortest path from G to F: G -> C -> F with weight 2
+Shortest path from G to H: G -> C -> D -> E -> A -> H with weight 5
+Shortest path from G to I: G -> C -> D -> E -> A -> H -> I with weight 6
+Shortest path from G to J: G -> C -> D -> E -> J with weight 4
+Shortest path from G to K: G -> C -> D -> E -> A -> H -> K with weight 6
+Shortest path from G to L: G -> C -> D -> E -> A -> H -> K -> L with weight 7
+Shortest path from G to M: G -> C -> D -> E -> A -> H -> K -> L -> M with weight 8
+Shortest path from G to N: G -> C -> D -> E -> A -> H -> K -> L -> M -> N with weight 9
+Shortest path from G to O: G -> C -> D -> E -> A -> H -> K -> L -> M -> N -> O with weight 10
+Shortest path from G to P: G -> C -> D -> E -> A -> H -> K -> L -> M -> N -> O -> P with weight 11
+Shortest path from G to Q: G -> C -> D -> E -> A -> H -> K -> L -> M -> N -> O -> P -> Q with weight 12
+Shortest path from G to R: G -> C -> D -> E -> A -> H -> K -> L -> M -> N -> O -> P -> R with weight 12
+Shortest path from G to S: G -> C -> D -> E -> A -> H -> K -> S with weight 7
+Shortest path from G to T: G -> C -> D -> E -> A -> H -> K -> S -> T with weight 8
+Shortest path from G to U: G -> C -> D -> E -> A -> H -> K -> S -> T -> U with weight 9
+Shortest path from G to V: G -> C -> D -> E -> A -> H -> K -> S -> T -> U -> V with weight 10
+Shortest path from G to W: G -> C -> D -> E -> A -> H -> K -> S -> T -> U -> V -> W with weight 11
+Shortest path from G to X: G -> C -> D -> E -> A -> H -> K -> S -> T -> U -> V -> W -> X with weight 12
+Shortest path from G to Y: G -> C -> D -> E -> A -> H -> K -> S -> T -> U -> V -> W -> X -> Y with weight 13
+Shortest path from G to Z: G -> C -> D -> E -> A -> H -> K -> S -> T -> U -> V -> W -> X -> Y -> Z with weight 14
+
+Shortest path from H to A: H -> A with weight 1
+Shortest path from H to B: H -> A -> B with weight 2
+Shortest path from H to C: H -> A -> B -> C with weight 3
+Shortest path from H to D: H -> A -> B -> C -> D with weight 4
+Shortest path from H to E: H -> A -> B -> C -> D -> E with weight 5
+Shortest path from H to F: H -> A -> B -> C -> F with weight 4
+Shortest path from H to G: H -> A -> B -> C -> F -> G with weight 5
+Shortest path from H to I: H -> I with weight 1
+Shortest path from H to J: H -> A -> B -> C -> D -> E -> J with weight 6
+Shortest path from H to K: H -> K with weight 1
+Shortest path from H to L: H -> K -> L with weight 2
+Shortest path from H to M: H -> K -> L -> M with weight 3
+Shortest path from H to N: H -> K -> L -> M -> N with weight 4
+Shortest path from H to O: H -> K -> L -> M -> N -> O with weight 5
+Shortest path from H to P: H -> K -> L -> M -> N -> O -> P with weight 6
+Shortest path from H to Q: H -> K -> L -> M -> N -> O -> P -> Q with weight 7
+Shortest path from H to R: H -> K -> L -> M -> N -> O -> P -> R with weight 7
+Shortest path from H to S: H -> K -> S with weight 2
+Shortest path from H to T: H -> K -> S -> T with weight 3
+Shortest path from H to U: H -> K -> S -> T -> U with weight 4
+Shortest path from H to V: H -> K -> S -> T -> U -> V with weight 5
+Shortest path from H to W: H -> K -> S -> T -> U -> V -> W with weight 6
+Shortest path from H to X: H -> K -> S -> T -> U -> V -> W -> X with weight 7
+Shortest path from H to Y: H -> K -> S -> T -> U -> V -> W -> X -> Y with weight 8
+Shortest path from H to Z: H -> K -> S -> T -> U -> V -> W -> X -> Y -> Z with weight 9
+
+Shortest path from I to A: I -> E -> A with weight 2
+Shortest path from I to B: I -> E -> A -> B with weight 3
+Shortest path from I to C: I -> E -> A -> B -> C with weight 4
+Shortest path from I to D: I -> E -> A -> B -> C -> D with weight 5
+Shortest path from I to E: I -> E with weight 1
+Shortest path from I to F: I -> E -> A -> B -> C -> F with weight 5
+Shortest path from I to G: I -> E -> A -> B -> C -> F -> G with weight 6
+Shortest path from I to H: I -> E -> A -> H with weight 3
+Shortest path from I to J: I -> E -> J with weight 2
+Shortest path from I to K: I -> E -> A -> H -> K with weight 4
+Shortest path from I to L: I -> E -> A -> H -> K -> L with weight 5
+Shortest path from I to M: I -> E -> A -> H -> K -> L -> M with weight 6
+Shortest path from I to N: I -> E -> A -> H -> K -> L -> M -> N with weight 7
+Shortest path from I to O: I -> E -> A -> H -> K -> L -> M -> N -> O with weight 8
+Shortest path from I to P: I -> E -> A -> H -> K -> L -> M -> N -> O -> P with weight 9
+Shortest path from I to Q: I -> E -> A -> H -> K -> L -> M -> N -> O -> P -> Q with weight 10
+Shortest path from I to R: I -> E -> A -> H -> K -> L -> M -> N -> O -> P -> R with weight 10
+Shortest path from I to S: I -> E -> A -> H -> K -> S with weight 5
+Shortest path from I to T: I -> E -> A -> H -> K -> S -> T with weight 6
+Shortest path from I to U: I -> E -> A -> H -> K -> S -> T -> U with weight 7
+Shortest path from I to V: I -> E -> A -> H -> K -> S -> T -> U -> V with weight 8
+Shortest path from I to W: I -> E -> A -> H -> K -> S -> T -> U -> V -> W with weight 9
+Shortest path from I to X: I -> E -> A -> H -> K -> S -> T -> U -> V -> W -> X with weight 10
+Shortest path from I to Y: I -> E -> A -> H -> K -> S -> T -> U -> V -> W -> X -> Y with weight 11
+Shortest path from I to Z: I -> E -> A -> H -> K -> S -> T -> U -> V -> W -> X -> Y -> Z with weight 12
+
+Shortest path from J to A: J -> E -> A with weight 2
+Shortest path from J to B: J -> E -> A -> B with weight 3
+Shortest path from J to C: J -> E -> A -> B -> C with weight 4
+Shortest path from J to D: J -> D with weight 1
+Shortest path from J to E: J -> E with weight 1
+Shortest path from J to F: J -> E -> A -> B -> C -> F with weight 5
+Shortest path from J to G: J -> E -> A -> B -> C -> F -> G with weight 6
+Shortest path from J to H: J -> E -> A -> H with weight 3
+Shortest path from J to I: J -> E -> A -> H -> I with weight 4
+Shortest path from J to J: J with weight 0
+Shortest path from J to K: J -> E -> A -> H -> K with weight 4
+Shortest path from J to L: J -> E -> A -> H -> K -> L with weight 5
+Shortest path from J to M: J -> E -> A -> H -> K -> L -> M with weight 6
+Shortest path from J to N: J -> E -> A -> H -> K -> L -> M -> N with weight 7
+Shortest path from J to O: J -> E -> A -> H -> K -> L -> M -> N -> O with weight 8
+Shortest path from J to P: J -> E -> A -> H -> K -> L -> M -> N -> O -> P with weight 9
+Shortest path from J to Q: J -> E -> A -> H -> K -> L -> M -> N -> O -> P -> Q with weight 10
+Shortest path from J to R: J -> E -> A -> H -> K -> L -> M -> N -> O -> P -> R with weight 10
+Shortest path from J to S: J -> E -> A -> H -> K -> S with weight 5
+Shortest path from J to T: J -> E -> A -> H -> K -> S -> T with weight 6
+Shortest path from J to U: J -> E -> A -> H -> K -> S -> T -> U with weight 7
+Shortest path from J to V: J -> E -> A -> H -> K -> S -> T -> U -> V with weight 8
+Shortest path from J to W: J -> E -> A -> H -> K -> S -> T -> U -> V -> W with weight 9
+Shortest path from J to X: J -> E -> A -> H -> K -> S -> T -> U -> V -> W -> X with weight 10
+Shortest path from J to Y: J -> E -> A -> H -> K -> S -> T -> U -> V -> W -> X -> Y with weight 11
+Shortest path from J to Z: J -> E -> A -> H -> K -> S -> T -> U -> V -> W -> X -> Y -> Z with weight 12
+
+Shortest path from K to A: K -> H -> A with weight 2
+Shortest path from K to B: K -> S -> T -> B with weight 3
+Shortest path from K to C: K -> S -> T -> B -> C with weight 4
+Shortest path from K to D: K -> S -> D with weight 2
+Shortest path from K to E: K -> S -> D -> E with weight 3
+Shortest path from K to F: K -> S -> T -> B -> C -> F with weight 5
+Shortest path from K to G: K -> S -> T -> B -> C -> F -> G with weight 6
+Shortest path from K to H: K -> H with weight 1
+Shortest path from K to I: K -> H -> I with weight 2
+Shortest path from K to J: K -> S -> D -> E -> J with weight 4
+Shortest path from K to K: K with weight 0
+Shortest path from K to L: K -> L with weight 1
+Shortest path from K to M: K -> L -> M with weight 2
+Shortest path from K to N: K -> L -> M -> N with weight 3
+Shortest path from K to O: K -> L -> M -> N -> O with weight 4
+Shortest path from K to P: K -> L -> M -> N -> O -> P with weight 5
+Shortest path from K to Q: K -> L -> M -> N -> O -> P -> Q with weight 6
+Shortest path from K to R: K -> L -> M -> N -> O -> P -> R with weight 6
+Shortest path from K to S: K -> S with weight 1
+Shortest path from K to T: K -> S -> T with weight 2
+Shortest path from K to U: K -> S -> T -> U with weight 3
+Shortest path from K to V: K -> S -> T -> U -> V with weight 4
+Shortest path from K to W: K -> S -> T -> U -> V -> W with weight 5
+Shortest path from K to X: K -> S -> T -> U -> V -> W -> X with weight 6
+Shortest path from K to Y: K -> S -> T -> U -> V -> W -> X -> Y with weight 7
+Shortest path from K to Z: K -> S -> T -> U -> V -> W -> X -> Y -> Z with weight 8
+
+Shortest path from L to A: L -> K -> H -> A with weight 3
+Shortest path from L to B: L -> K -> S -> T -> B with weight 4
+Shortest path from L to C: L -> K -> S -> T -> B -> C with weight 5
+Shortest path from L to D: L -> K -> S -> D with weight 3
+Shortest path from L to E: L -> K -> S -> D -> E with weight 4
+Shortest path from L to F: L -> K -> S -> T -> B -> C -> F with weight 6
+Shortest path from L to G: L -> K -> S -> T -> B -> C -> F -> G with weight 7
+Shortest path from L to H: L -> K -> H with weight 2
+Shortest path from L to I: L -> K -> H -> I with weight 3
+Shortest path from L to J: L -> K -> S -> D -> E -> J with weight 5
+Shortest path from L to K: L -> K with weight 1
+Shortest path from L to L: L with weight 0
+Shortest path from L to M: L -> M with weight 1
+Shortest path from L to N: L -> M -> N with weight 2
+Shortest path from L to O: L -> M -> N -> O with weight 3
+Shortest path from L to P: L -> M -> N -> O -> P with weight 4
+Shortest path from L to Q: L -> M -> N -> O -> P -> Q with weight 5
+Shortest path from L to R: L -> M -> N -> O -> P -> R with weight 5
+Shortest path from L to S: L -> K -> S with weight 2
+Shortest path from L to T: L -> K -> S -> T with weight 3
+Shortest path from L to U: L -> K -> S -> T -> U with weight 4
+Shortest path from L to V: L -> K -> S -> T -> U -> V with weight 5
+Shortest path from L to W: L -> K -> S -> T -> U -> V -> W with weight 6
+Shortest path from L to X: L -> K -> S -> T -> U -> V -> W -> X with weight 7
+Shortest path from L to Y: L -> K -> S -> T -> U -> V -> W -> X -> Y with weight 8
+Shortest path from L to Z: L -> K -> S -> T -> U -> V -> W -> X -> Y -> Z with weight 9
+
+Shortest path from M to A: M -> N -> O -> P -> R -> Q -> K -> H -> A with weight 8
+Shortest path from M to B: M -> N -> O -> P -> R -> Q -> K -> S -> T -> B with weight 9
+Shortest path from M to C: M -> N -> O -> P -> R -> Q -> K -> S -> T -> B -> C with weight 10
+Shortest path from M to D: M -> N -> O -> P -> R -> Q -> K -> S -> D with weight 8
+Shortest path from M to E: M -> N -> O -> P -> R -> Q -> K -> S -> D -> E with weight 9
+Shortest path from M to F: M -> N -> O -> P -> R -> Q -> K -> S -> T -> B -> C -> F with weight 11
+Shortest path from M to G: M -> N -> O -> P -> R -> Q -> K -> S -> T -> B -> C -> F -> G with weight 12
+Shortest path from M to H: M -> N -> O -> P -> R -> Q -> K -> H with weight 7
+Shortest path from M to I: M -> N -> O -> P -> R -> Q -> K -> H -> I with weight 8
+Shortest path from M to J: M -> N -> O -> P -> R -> Q -> K -> S -> D -> E -> J with weight 10
+Shortest path from M to K: M -> N -> O -> P -> R -> Q -> K with weight 6
+Shortest path from M to L: M -> L with weight 1
+Shortest path from M to M: M with weight 0
+Shortest path from M to N: M -> N with weight 1
+Shortest path from M to O: M -> N -> O with weight 2
+Shortest path from M to P: M -> N -> O -> P with weight 3
+Shortest path from M to Q: M -> N -> O -> P -> Q with weight 4
+Shortest path from M to R: M -> N -> O -> P -> R with weight 4
+Shortest path from M to S: M -> N -> O -> P -> R -> Q -> K -> S with weight 7
+Shortest path from M to T: M -> N -> O -> P -> R -> Q -> K -> S -> T with weight 8
+Shortest path from M to U: M -> N -> O -> P -> R -> Q -> K -> S -> T -> U with weight 9
+Shortest path from M to V: M -> N -> O -> P -> R -> Q -> K -> S -> T -> U -> V with weight 10
+Shortest path from M to W: M -> N -> O -> P -> R -> Q -> K -> S -> T -> U -> V -> W with weight 11
+Shortest path from M to X: M -> N -> O -> P -> R -> Q -> K -> S -> T -> U -> V -> W -> X with weight 12
+Shortest path from M to Y: M -> N -> O -> P -> R -> Q -> K -> S -> T -> U -> V -> W -> X -> Y with weight 13
+Shortest path from M to Z: M -> N -> O -> P -> R -> Q -> K -> S -> T -> U -> V -> W -> X -> Y -> Z with weight 14
+
+Shortest path from N to A: N -> O -> P -> R -> Q -> K -> H -> A with weight 7
+Shortest path from N to B: N -> O -> P -> R -> Q -> K -> S -> T -> B with weight 8
+Shortest path from N to C: N -> O -> P -> R -> Q -> K -> S -> T -> B -> C with weight 9
+Shortest path from N to D: N -> O -> P -> R -> Q -> K -> S -> D with weight 7
+Shortest path from N to E: N -> O -> P -> R -> Q -> K -> S -> D -> E with weight 8
+Shortest path from N to F: N -> O -> P -> R -> Q -> K -> S -> T -> B -> C -> F with weight 10
+Shortest path from N to G: N -> O -> P -> R -> Q -> K -> S -> T -> B -> C -> F -> G with weight 11
+Shortest path from N to H: N -> O -> P -> R -> Q -> K -> H with weight 6
+Shortest path from N to I: N -> O -> P -> R -> Q -> K -> H -> I with weight 7
+Shortest path from N to J: N -> O -> P -> R -> Q -> K -> S -> D -> E -> J with weight 9
+Shortest path from N to K: N -> O -> P -> R -> Q -> K with weight 5
+Shortest path from N to L: N -> M -> L with weight 2
+Shortest path from N to M: N -> M with weight 1
+Shortest path from N to N: N with weight 0
+Shortest path from N to O: N -> O with weight 1
+Shortest path from N to P: N -> O -> P with weight 2
+Shortest path from N to Q: N -> O -> P -> Q with weight 3
+Shortest path from N to R: N -> O -> P -> R with weight 3
+Shortest path from N to S: N -> O -> P -> R -> Q -> K -> S with weight 6
+Shortest path from N to T: N -> O -> P -> R -> Q -> K -> S -> T with weight 7
+Shortest path from N to U: N -> O -> P -> R -> Q -> K -> S -> T -> U with weight 8
+Shortest path from N to V: N -> O -> P -> R -> Q -> K -> S -> T -> U -> V with weight 9
+Shortest path from N to W: N -> O -> P -> R -> Q -> K -> S -> T -> U -> V -> W with weight 10
+Shortest path from N to X: N -> O -> P -> R -> Q -> K -> S -> T -> U -> V -> W -> X with weight 11
+Shortest path from N to Y: N -> O -> P -> R -> Q -> K -> S -> T -> U -> V -> W -> X -> Y with weight 12
+Shortest path from N to Z: N -> O -> P -> R -> Q -> K -> S -> T -> U -> V -> W -> X -> Y -> Z with weight 13
+
+Shortest path from O to A: O -> P -> R -> Q -> K -> H -> A with weight 6
+Shortest path from O to B: O -> P -> R -> Q -> K -> S -> T -> B with weight 7
+Shortest path from O to C: O -> P -> R -> Q -> K -> S -> T -> B -> C with weight 8
+Shortest path from O to D: O -> P -> R -> Q -> K -> S -> D with weight 6
+Shortest path from O to E: O -> P -> R -> Q -> K -> S -> D -> E with weight 7
+Shortest path from O to F: O -> P -> R -> Q -> K -> S -> T -> B -> C -> F with weight 9
+Shortest path from O to G: O -> P -> R -> Q -> K -> S -> T -> B -> C -> F -> G with weight 10
+Shortest path from O to H: O -> P -> R -> Q -> K -> H with weight 5
+Shortest path from O to I: O -> P -> R -> Q -> K -> H -> I with weight 6
+Shortest path from O to J: O -> P -> R -> Q -> K -> S -> D -> E -> J with weight 8
+Shortest path from O to K: O -> P -> R -> Q -> K with weight 4
+Shortest path from O to L: O -> P -> R -> Q -> K -> L with weight 5
+Shortest path from O to M: O -> P -> R -> Q -> K -> L -> M with weight 6
+Shortest path from O to N: O -> N with weight 1
+Shortest path from O to O: O with weight 0
+Shortest path from O to P: O -> P with weight 1
+Shortest path from O to Q: O -> P -> Q with weight 2
+Shortest path from O to R: O -> P -> R with weight 2
+Shortest path from O to S: O -> P -> R -> Q -> K -> S with weight 5
+Shortest path from O to T: O -> P -> R -> Q -> K -> S -> T with weight 6
+Shortest path from O to U: O -> P -> R -> Q -> K -> S -> T -> U with weight 7
+Shortest path from O to V: O -> P -> R -> Q -> K -> S -> T -> U -> V with weight 8
+Shortest path from O to W: O -> P -> R -> Q -> K -> S -> T -> U -> V -> W with weight 9
+Shortest path from O to X: O -> P -> R -> Q -> K -> S -> T -> U -> V -> W -> X with weight 10
+Shortest path from O to Y: O -> P -> R -> Q -> K -> S -> T -> U -> V -> W -> X -> Y with weight 11
+Shortest path from O to Z: O -> P -> R -> Q -> K -> S -> T -> U -> V -> W -> X -> Y -> Z with weight 12
+
+Shortest path from P to A: P -> O -> N -> M -> L -> K -> H -> A with weight 7
+Shortest path from P to B: P -> O -> N -> M -> L -> K -> S -> T -> B with weight 8
+Shortest path from P to C: P -> O -> N -> M -> L -> K -> S -> T -> B -> C with weight 9
+Shortest path from P to D: P -> O -> N -> M -> L -> K -> S -> D with weight 7
+Shortest path from P to E: P -> O -> N -> M -> L -> K -> S -> D -> E with weight 8
+Shortest path from P to F: P -> O -> N -> M -> L -> K -> S -> T -> B -> C -> F with weight 10
+Shortest path from P to G: P -> O -> N -> M -> L -> K -> S -> T -> B -> C -> F -> G with weight 11
+Shortest path from P to H: P -> O -> N -> M -> L -> K -> H with weight 6
+Shortest path from P to I: P -> O -> N -> M -> L -> K -> H -> I with weight 7
+Shortest path from P to J: P -> O -> N -> M -> L -> K -> S -> D -> E -> J with weight 9
+Shortest path from P to K: P -> O -> N -> M -> L -> K with weight 5
+Shortest path from P to L: P -> O -> N -> M -> L with weight 4
+Shortest path from P to M: P -> O -> N -> M with weight 3
+Shortest path from P to N: P -> O -> N with weight 2
+Shortest path from P to O: P -> O with weight 1
+Shortest path from P to P: P with weight 0
+Shortest path from P to Q: P -> O -> Q with weight 2
+Shortest path from P to R: P -> O -> Q -> R with weight 3
+Shortest path from P to S: P -> O -> N -> M -> L -> K -> S with weight 6
+Shortest path from P to T: P -> O -> N -> M -> L -> K -> S -> T with weight 7
+Shortest path from P to U: P -> O -> N -> M -> L -> K -> S -> T -> U with weight 8
+Shortest path from P to V: P -> O -> N -> M -> L -> K -> S -> T -> U -> V with weight 9
+Shortest path from P to W: P -> O -> N -> M -> L -> K -> S -> T -> U -> V -> W with weight 10
+Shortest path from P to X: P -> O -> N -> M -> L -> K -> S -> T -> U -> V -> W -> X with weight 11
+Shortest path from P to Y: P -> O -> N -> M -> L -> K -> S -> T -> U -> V -> W -> X -> Y with weight 12
+Shortest path from P to Z: P -> O -> N -> M -> L -> K -> S -> T -> U -> V -> W -> X -> Y -> Z with weight 13
+
+Shortest path from Q to A: Q -> K -> H -> A with weight 3
+Shortest path from Q to B: Q -> K -> S -> T -> B with weight 4
+Shortest path from Q to C: Q -> K -> S -> T -> B -> C with weight 5
+Shortest path from Q to D: Q -> K -> S -> D with weight 3
+Shortest path from Q to E: Q -> K -> S -> D -> E with weight 4
+Shortest path from Q to F: Q -> K -> S -> T -> B -> C -> F with weight 6
+Shortest path from Q to G: Q -> K -> S -> T -> B -> C -> F -> G with weight 7
+Shortest path from Q to H: Q -> K -> H with weight 2
+Shortest path from Q to I: Q -> K -> H -> I with weight 3
+Shortest path from Q to J: Q -> K -> S -> D -> E -> J with weight 5
+Shortest path from Q to K: Q -> K with weight 1
+Shortest path from Q to L: Q -> K -> L with weight 2
+Shortest path from Q to M: Q -> K -> L -> M with weight 3
+Shortest path from Q to N: Q -> K -> L -> M -> N with weight 4
+Shortest path from Q to O: Q -> K -> L -> M -> N -> O with weight 5
+Shortest path from Q to P: Q -> K -> L -> M -> N -> O -> P with weight 6
+Shortest path from Q to Q: Q with weight 0
+Shortest path from Q to R: Q -> K -> L -> M -> N -> O -> P -> R with weight 7
+Shortest path from Q to S: Q -> K -> S with weight 2
+Shortest path from Q to T: Q -> K -> S -> T with weight 3
+Shortest path from Q to U: Q -> K -> S -> T -> U with weight 4
+Shortest path from Q to V: Q -> K -> S -> T -> U -> V with weight 5
+Shortest path from Q to W: Q -> K -> S -> T -> U -> V -> W with weight 6
+Shortest path from Q to X: Q -> K -> S -> T -> U -> V -> W -> X with weight 7
+Shortest path from Q to Y: Q -> K -> S -> T -> U -> V -> W -> X -> Y with weight 8
+Shortest path from Q to Z: Q -> K -> S -> T -> U -> V -> W -> X -> Y -> Z with weight 9
+
+Shortest path from R to A: R -> Q -> K -> H -> A with weight 4
+Shortest path from R to B: R -> Q -> K -> S -> T -> B with weight 5
+Shortest path from R to C: R -> Q -> K -> S -> T -> B -> C with weight 6
+Shortest path from R to D: R -> Q -> K -> S -> D with weight 4
+Shortest path from R to E: R -> Q -> K -> S -> D -> E with weight 5
+Shortest path from R to F: R -> Q -> K -> S -> T -> B -> C -> F with weight 7
+Shortest path from R to G: R -> Q -> K -> S -> T -> B -> C -> F -> G with weight 8
+Shortest path from R to H: R -> Q -> K -> H with weight 3
+Shortest path from R to I: R -> Q -> K -> H -> I with weight 4
+Shortest path from R to J: R -> Q -> K -> S -> D -> E -> J with weight 6
+Shortest path from R to K: R -> Q -> K with weight 2
+Shortest path from R to L: R -> Q -> K -> L with weight 3
+Shortest path from R to M: R -> Q -> K -> L -> M with weight 4
+Shortest path from R to N: R -> Q -> K -> L -> M -> N with weight 5
+Shortest path from R to O: R -> Q -> K -> L -> M -> N -> O with weight 6
+Shortest path from R to P: R -> Q -> K -> L -> M -> N -> O -> P with weight 7
+Shortest path from R to Q: R -> Q with weight 1
+Shortest path from R to R: R with weight 0
+Shortest path from R to S: R -> Q -> K -> S with weight 3
+Shortest path from R to T: R -> Q -> K -> S -> T with weight 4
+Shortest path from R to U: R -> Q -> K -> S -> T -> U with weight 5
+Shortest path from R to V: R -> Q -> K -> S -> T -> U -> V with weight 6
+Shortest path from R to W: R -> Q -> K -> S -> T -> U -> V -> W with weight 7
+Shortest path from R to X: R -> Q -> K -> S -> T -> U -> V -> W -> X with weight 8
+Shortest path from R to Y: R -> Q -> K -> S -> T -> U -> V -> W -> X -> Y with weight 9
+Shortest path from R to Z: R -> Q -> K -> S -> T -> U -> V -> W -> X -> Y -> Z with weight 10
+
+
