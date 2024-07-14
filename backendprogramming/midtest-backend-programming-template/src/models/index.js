@@ -3,6 +3,8 @@ const config = require('../core/config');
 const logger = require('../core/logger')('app');
 
 const usersSchema = require('./users-schema');
+const polousersSchema = require('./users-schema');
+const historySchema = require('./users-schema');
 
 mongoose.connect(`${config.database.connection}/${config.database.name}`, {
   useNewUrlParser: true,
@@ -14,7 +16,7 @@ db.once('open', () => {
 });
 
 const User = mongoose.model('users', mongoose.Schema(usersSchema));
-const polouser = mongoose.model('polousers', mongoodse.Schema(polousersSchema));
+const polouser = mongoose.model('polousers', mongoose.Schema(polousersSchema));
 const history = mongoose.model('history', mongoose.Schema(historySchema));
 
 module.exports = {

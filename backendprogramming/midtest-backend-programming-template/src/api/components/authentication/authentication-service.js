@@ -33,6 +33,23 @@ async function checkLoginCredentials(email, password) {
   return null;
 }
 
+async function getUser(id) {
+  const user = await authenticationRepository.getUser(id);
+
+  // User not found
+  if (!user) {
+    return null;
+  }
+
+  return {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    attempt: user.attempt,
+    last_attempt: user.last_attempt,
+  };
+}
+
 module.exports = {
   checkLoginCredentials,
 };

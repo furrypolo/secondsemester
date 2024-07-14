@@ -1,0 +1,676 @@
+//Kelompok 4
+//Eryca Dhamma Shanti - 535230071
+//Georgia Sugisandhea - 535230080
+//Brenda Abigail Han's Hartama - 535230194
+
+//Pengerjaan PPT pertemuan 12 slide 6
+//output
+Directed Graph:
+cs7 : (cs7,cs8,1)(cs7,cs9,1)
+cs8 :
+cs3 :
+cs5 : (cs5,cs10,1)
+cs2 : (cs2,cs3,1)(cs2,cs4,1)(cs2,cs5,1)
+cs4 : (cs4,cs6,1)(cs4,cs7,1)
+cs10 :
+cs6 : (cs6,cs8,1)
+cs9 : (cs9,cs10,1)
+cs1 : (cs1,cs2,1)
+Topological Ordering:
+[ cs1 cs2 cs3 cs4 cs5 cs6 cs7 cs8 cs9 cs10 ]
+
+//output (jika ada cycle (cs9 dan cs10))
+Directed Graph:
+cs7 : (cs7,cs8,1)(cs7,cs9,1)
+cs8 :
+cs3 :
+cs5 : (cs5,cs10,1)
+cs2 : (cs2,cs3,1)(cs2,cs4,1)(cs2,cs5,1)
+cs4 : (cs4,cs6,1)(cs4,cs7,1)
+cs10 : (cs10,cs9,1)
+cs6 : (cs6,cs8,1)
+cs9 : (cs9,cs10,1)
+cs1 : (cs1,cs2,1)
+Sorry! Graph contains cycle
+
+//MainProgram.java
+import strukdat.WeightedGraph;
+
+class MyVertex{
+	String nodeName;
+	MyVertex(String name)
+	{
+		this.nodeName = name;
+	}
+
+    @Override
+    public String toString() {
+        return (nodeName);
+    }
+}
+
+
+public class MainProgram {
+    public static void main(String[] args) {
+        //create vertex
+        MyVertex v1 = new MyVertex("cs1");
+        MyVertex v2 = new MyVertex("cs2");
+        MyVertex v3 = new MyVertex("cs3");
+        MyVertex v4 = new MyVertex("cs4");
+        MyVertex v5 = new MyVertex("cs5");
+        MyVertex v6 = new MyVertex("cs6");
+        MyVertex v7 = new MyVertex("cs7");
+        MyVertex v8 = new MyVertex("cs8");
+        MyVertex v9 = new MyVertex("cs9");
+        MyVertex v10 = new MyVertex("cs10");
+
+        
+        WeightedGraph<MyVertex> DAG = new WeightedGraph<MyVertex>(true); //directed
+        DAG.addEdge(v1, v2, 1);
+        DAG.addEdge(v2, v3, 1);
+        DAG.addEdge(v2, v4, 1);
+        DAG.addEdge(v2, v5, 1);
+        DAG.addEdge(v4, v6, 1);
+        DAG.addEdge(v4, v7, 1);
+        DAG.addEdge(v5, v10, 1);
+        DAG.addEdge(v6, v8, 1);
+        DAG.addEdge(v7, v8, 1);
+        DAG.addEdge(v7, v9, 1);
+        DAG.addEdge(v9, v10, 1);
+
+        // DAG.addEdge(v3, v1, 1); //aktifkan untuk mengetes cycle di DAG
+        System.out.println("Directed Graph:"); DAG.printGraph();
+        DAG.TopologicalOrdering();
+    }
+}
+
+//WeightedGraph.java
+package strukdat;
+/* 
+ * Struktur data Graph dengan bobot pada setiap edge
+ * sources: 
+ * 1. https://www.lavivienpost.net/weighted-graph-as-adjacency-list/
+ * 2. https://www.lavivienpost.net/find-shortest-path-using-dijkstras-algorithm/
+ * 
+*/
+
+import java.lang.reflect.Array;
+import java.util.*;
+import strukdat.SingleList;
+
+public class WeightedGraph<T> { 
+    //Map<T, LinkedList<Edge<T>>> adj;
+	private Map<T, SingleList<Edge<T>>> adj;
+	boolean directed;
+	
+	//Constructor, Time O(1) Space O(1)
+	public WeightedGraph (boolean type) { 
+        adj = new HashMap<>();
+		directed = type; // false: undirected, true: directed
+	}
+
+    //Add edges including adding nodes, Time O(1) Space O(1)
+	public void addEdge(T a, T b, int w) {
+		adj.putIfAbsent(a, new SingleList<>()); //add node
+		adj.putIfAbsent(b, new SingleList<>()); //add node
+		Edge<T> edge1 = new Edge<>(a, b, w);
+		adj.get(a).pushQ(edge1);//add(edge1); //add edge
+		if (!directed) { //undirected
+			Edge<T> edge2 = new Edge<>(b, a, w);
+			adj.get(b).pushQ(edge2);
+		}			
+	}
+
+
+
+    //Print graph as hashmap, Time O(V+E), Space O(1)
+	public void printGraph() {
+		for (T key: adj.keySet()) {
+			//System.out.println(key.toString() + " : " + adj.get(key).toString());
+            System.out.print(key.toString() + " : ");
+			SingleList<Edge<T>> thelist = adj.get(key);
+			Node<Edge<T>> curr = thelist.head;
+			while(curr != null) {
+				System.out.print(curr.data);
+				curr = curr.next;
+			}
+			System.out.println();
+		}
+	}
+
+	//DFS 
+	public void DFS(T src) {
+		if (!adj.containsKey(src)) //invalid input
+			return;
+		HashMap<T, Boolean> visited = new HashMap<>();
+	    helper(src, visited);
+	    System.out.println();
+	}
+
+	private void helper(T v, HashMap<T, Boolean> visited) {
+	    visited.put(v, true);
+	    System.out.print(v.toString() + " ");
+	    SingleList<Edge<T>> thelist = adj.get(v);
+		Node<Edge<T>> curr = thelist.head;
+		while(curr != null) {
+			T u = curr.data.neighbor;
+	        if (visited.get(u) == null)
+	            helper(u, visited);
+			curr = curr.next;
+		}
+	}
+
+	//BFS
+	public void BFS(T src) { 
+		if (!adj.containsKey(src)) //invalid input
+			return;
+		SingleList<T> q = new SingleList<>(); 
+	    HashMap<T, Boolean> visited = new HashMap<>(); 
+	    q.pushQ(src); 
+	    visited.put(src, true); 
+	    while (!q.isEmpty()) { 
+	        T v = q.pop().data; 
+	        System.out.print(v.toString() + " "); 
+			SingleList<Edge<T>> thelist = adj.get(v);
+			Node<Edge<T>> curr = thelist.head;
+			while(curr != null) {
+				T u = curr.data.neighbor;
+	            if (visited.get(u) == null) { 
+	                q.pushQ(u); 
+	                visited.put(u, true); 
+	            }
+				curr = curr.next;
+			}         
+	    } 
+	    System.out.println(); 
+	}
+	
+	/*
+	 * Shortest Paths dari vertex v ke semua vertex lainnya 
+	 * menggunakan Algoritma Dijkstra
+	 * ==========================================================
+	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+    public void dijkstra(T start) { // N = number of nodes
+        Map<T, Integer> res = new HashMap<>(); 
+        PriorityQueue<Map.Entry<T, Integer>> pq =new PriorityQueue<>((a,b) -> (int)(a.getValue() - b.getValue()));           
+        Map<T,T> prev = new HashMap<>();
+
+		for (T key: adj.keySet()) 
+        	res.put(key, Integer.MAX_VALUE);
+			pq.offer(new AbstractMap.SimpleEntry(start, 0)); 
+			res.put(start, 0); 
+			while (!pq.isEmpty()) { 
+				T u = pq.poll().getKey(); 
+				SingleList<Edge<T>> thelist = adj.get(u);
+				Node<Edge<T>> curr = thelist.head;
+				while(curr != null) {
+					Edge<T> edge = curr.data;
+					T v = edge.getNeighbor();  //.connectedVetex;
+					int weight = edge.getWeight(); 
+					if (res.get(v) > res.get(u) + weight) { 
+						res.put(v, res.get(u) + weight); 
+						pq.offer(new AbstractMap.SimpleEntry(v, res.get(v))); 
+						prev.put(v, u);
+					}
+					curr = curr.next; 
+				} 
+				System.out.println(res);
+			}
+			ArrayList<T> path = new ArrayList<>();
+			System.out.println("Shortest path to each vertex: ");
+			for (T key: adj.keySet()) {
+				if(key!=start){
+					T node = key;
+					path.add(node);
+					while(node!=start){
+						node = prev.get(node);
+						path.add(node);
+					}
+					System.out.print('[');
+					for (int i = path.size() - 1; i >= 0; i--) {
+						if(i != path.size() - 1){
+							System.out.print(", ");
+						}
+						System.out.print(path.get(i));
+					}
+					path.clear();
+					System.out.println("] ");
+				}
+			}
+    }
+
+	//MST menggunakan Algoritm Prim
+	public void MSTPrim(T src) { 
+		int totalMST = 0;
+		if (!adj.containsKey(src))
+			return;
+			
+		SingleList<Edge<T>> outputList = new SingleList<Edge<T>>();
+		Map<T, Boolean> visited = new HashMap<>(); 
+		visited.put(src, true); 
+
+		Node<Edge<T>> min = null;
+		int minimum = Integer.MAX_VALUE;
+
+		while(visited.size()!=adj.size()){
+			min = null;
+			minimum = Integer.MAX_VALUE;
+
+			for (Map.Entry<T, Boolean> entry : visited.entrySet()) {
+				T vertex = entry.getKey();
+				SingleList<Edge<T>> thelist = adj.get(vertex);
+				Node<Edge<T>> curr = thelist.head;
+				while(curr != null) {
+					if (visited.get(curr.data.getNeighbor()) == null){
+						if(curr.data.getWeight()<minimum){
+							min = curr;
+							minimum = curr.data.getWeight();
+						}
+					}
+					curr = curr.next;
+				}      
+			}
+			
+			Edge<T> edge = min.data;
+			outputList.pushQ(edge);
+			totalMST += min.data.getWeight();
+			visited.put(min.data.getNeighbor(), true);
+		}
+		outputList.cetakList();
+	    System.out.println("MST Length = " + totalMST); 
+	}
+
+	//MST menggunakan Algoritm Kruskal
+	public void MSTKruskal() {
+		SingleList<Edge<T>> outputList = new SingleList<Edge<T>>();
+		int totalMST = 0;
+		
+		Heap<Integer, Edge<T>> edgeList = new Heap<Integer, Edge<T>>(adj.size() * adj.size(), true);
+		Set<Edge<T>> edgesDone = new HashSet<>();
+		for (T key : adj.keySet()) {
+			SingleList<Edge<T>> thelist = adj.get(key);
+			Node<Edge<T>> curr = thelist.head;
+			while (curr != null) {
+				Edge<T> edge = curr.data;
+				if (!edgesDone.contains(edge)) {
+					int weight = edge.getWeight();
+					edgeList.insert(weight, edge);
+					edgesDone.add(edge);
+				}
+				curr = curr.next;
+			}
+		}
+	
+		Sorter(edgeList);
+
+		Map<T, T> parent = new HashMap<>();
+		Map<T, Integer> ranking = new HashMap<>();
+
+		for (T vertex : adj.keySet()) {
+			parent.put(vertex, vertex);
+			ranking.put(vertex, 0);
+		}
+
+		while (edgeList.size() != 0) {
+			GNode<Integer, Edge<T>> item = edgeList.removeSort();
+			Edge<T> edge = item.data;
+
+			boolean right = false;
+			Node<Edge<T>> current = outputList.head;
+			while (current != null) {
+				Edge<T> currentEdge = current.data;
+				if ((edge.getVertex() == currentEdge.getVertex() && edge.getNeighbor() == currentEdge.getNeighbor()) || 
+					(edge.getVertex() == currentEdge.getNeighbor() && edge.getNeighbor() == currentEdge.getVertex())) {
+					right = true;
+					break;
+				}
+				current = current.next;
+			}
+
+			if (!right) {
+				if (!connected(edge.getVertex(), edge.getNeighbor(), parent)) {
+					outputList.pushQ(edge);
+					totalMST += edge.getWeight();
+					union(edge.getVertex(), edge.getNeighbor(), parent, ranking);
+				}
+			}
+		}
+
+		outputList.cetakList();
+		System.out.println("MST Length = " + totalMST);
+	}
+
+	 public void Sorter(Heap<Integer, Edge<T>> edgeList ){
+		for (int i = 0; i < edgeList.size() - 1; i++) {
+			boolean swap = false;
+			for (int j = 0; j < edgeList.size() - i - 1; j++) {
+				int weightone = edgeList.getKey(j);
+				int weighttwo = edgeList.getKey(j + 1);
+				if (weightone > weighttwo) {
+					edgeList.swap(j, j + 1);
+					swap = true;
+				}
+			}
+			if (!swap) {
+				break;
+			}
+		}
+	}
+
+	private T find(T vertex, Map<T, T> parent) {
+		if (!parent.get(vertex).equals(vertex)) {
+			parent.put(vertex, find(parent.get(vertex), parent));
+		}
+		return parent.get(vertex);
+	}
+
+	private void union(T vertex, T neighbor, Map<T, T> parent, Map<T, Integer> rank) {
+		T from1 = find(vertex, parent);
+		T from2 = find(neighbor, parent);
+	
+		if (!from1.equals(from2)) {
+			int ranking1 = rank.get(from1);
+			int ranking2 = rank.get(from2);
+	
+			if (ranking1 < ranking2) {
+				parent.put(from1, from2);
+			} 
+			else if (ranking1 > ranking2) {
+				parent.put(from2, from1);
+			} 
+			else {
+				parent.put(from2, from1);
+				rank.put(from1, ranking1 + 1);
+			}
+		}
+	}
+
+	private boolean connected(T vertex, T neighbor, Map<T, T> parent) {
+		boolean fin = find(vertex, parent).equals(find(neighbor, parent));
+		return fin;
+	}
+
+
+	//Topological Ordering
+	
+	public void TopologicalOrdering(){
+		HashMap<T, Boolean> visited = new HashMap<>();
+		HashMap<T, Integer> indegree = new HashMap<>();
+		SingleList<T> queue = new SingleList<>();
+
+		for(T key: adj.keySet()){
+			indegree.put(key, 0);
+		}
+
+		for(T key: adj.keySet()){
+			SingleList<Edge<T>> thelist = adj.get(key);
+			Node<Edge<T>> curr = thelist.head;
+			while(curr != null) {
+				indegree.put(curr.data.neighbor, indegree.get(curr.data.neighbor)+1);
+				curr = curr.next;
+			}
+		}
+
+		for(T key: adj.keySet()){
+			if(indegree.get(key)==0){
+				queue.pushQ(key);
+			}
+		}
+
+		int count = 0;
+		SingleList<T> finished = new SingleList<>();
+
+		while(!queue.isEmpty()){
+			T out = queue.popT();
+			visited.put(out, true);
+			finished.pushQ(out);
+			count++;
+
+			SingleList<Edge<T>> thelist = adj.get(out);
+			Node<Edge<T>> curr = thelist.head;
+			while(curr != null) {
+				indegree.put(curr.data.neighbor, indegree.get(curr.data.neighbor)-1);
+				if(indegree.get(curr.data.neighbor)==0 && (visited.get(curr.data.neighbor)==null)){
+					queue.pushQ(curr.data.neighbor);
+				}
+				curr = curr.next;
+			}
+		}
+		if(count != adj.size()){
+			System.out.println("Sorry! Graph contains cycle");
+		}
+		else{
+			System.out.println("Topological Ordering:");
+			finished.cetakList();
+		}
+	}
+}
+
+
+//Edge.java
+// Source code is decompiled from a .class file using FernFlower decompiler.
+package strukdat;
+
+import java.util.Objects;
+
+public class Edge<T> { 
+	T vertex;
+	public T neighbor; //connected vertex
+	Integer weight; //weight
+
+	
+	//Constructor, Time O(1) Space O(1)
+	public Edge(T u, T v, int w) {
+		this.vertex = u;
+		this.neighbor = v; 
+		this.weight = w;
+	}
+
+	public Edge<T> getEdge(){
+		return this;
+	}
+
+	public int getWeight() {
+        return weight;
+    }
+	
+	public T getVertex() {
+		return vertex;
+	}
+
+	public T getNeighbor(){
+		return neighbor;
+	}
+
+	public int compareWeight(Edge<T> other){
+		return this.weight - other.getWeight();
+	}
+
+	 @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Edge<?> edge = (Edge<?>) o;
+        return weight == edge.weight && vertex.equals(edge.vertex) && neighbor.equals(edge.neighbor);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(vertex, neighbor, weight);
+    }
+
+	
+	//Time O(1) Space O(1)
+	@Override
+	public String toString() {
+		return "(" + vertex + "," + neighbor + "," + weight + ")";
+	}
+
+}
+	
+//SingleList.java
+package strukdat;
+/*
+ * Learning LinkedList Singular
+ * head -> |10|o->|20|o->|30| <-o tail
+ * 
+ * @author: Lely Hiryanto
+ */
+
+
+import java.util.*;
+import strukdat.Node;
+
+public class SingleList<T> {
+    public Node<T> head;
+    Node<T> tail;
+
+    //constructor
+    public SingleList() {
+        head = null;
+        tail = null;
+    }
+
+    public boolean find(T search){
+        Node<T> current = head;
+        while(current!=null){
+            if(current.data.equals(search)) return true;
+            else current = current.next;
+        }
+        return false;
+    }
+
+    // Menyisipkan setiap node baru yang dibuat di akhir list
+    public void pushQ(T value) {
+        //buat node baru
+		Node<T> newNode = new Node<T>(value);
+        //jika list kosong, head dan tail sama-sama menunjuk ke node pertama
+		if (head == null) {
+            head = newNode;
+            tail = newNode;
+        }
+        //jika tidak kosong, tail diupdate untuk menunjuk ke node baru
+		else {
+			tail.next = newNode;
+            tail = newNode;
+		}
+	}
+
+    // Meletakkan setiap node baru yang dibuat di awal list (stack)
+    public void pushS(T value) {
+        //buat node baru
+		Node<T> newNode = new Node<T>(value);
+        //jika list kosong, head dan tail sama-sama menunjuk ke node pertama
+		if (head == null) {
+			head = newNode;
+			tail = newNode;
+		}
+        //jika tidak kosong, node baru menunjuk ke node pertama di list
+        //head diupdate untuk menunjuk ke node baru
+		else {
+            newNode.next = head;
+			head = newNode;
+		}
+	}
+
+    //Mencetak bagian informasi dari setiap node di linkedlist
+    public void cetakList() {
+        //set pointer curr untuk menunjuk ke node pertama (node pertama yang ditunjuk oleh head)
+		Node<T> curr = head;
+        //jika list kosong, tampilkan pesan list kosong
+		if(curr == null) System.out.println("List kosong!");
+        /*
+         * jika list tidak kosong, maka cetak bagian informasi 
+           dari setiap node yang dikunjungi. 
+        */
+		else {
+            System.out.print("[ ");
+			while(curr != null) {
+				System.out.print(curr.data.toString() + " ");
+                /*
+                 * curr diupdate untuk menunjuk ke node selanjutnya
+                 * sampai curr null, dimana curr diset ke bagian 'next' 
+                 * dari node terakhir yang bernilai null. Artinya, 
+                 * pointer curr sudah ada di akhir list.
+                 */
+				curr = curr.next;
+			}
+		}
+        System.out.println("]");
+	}
+
+
+    //Mengambil dan menghapus elemen pertama di queue dan stack
+    public Node<T> pop() {
+        Node<T> n;
+        if(head == null) n = null;
+        else {
+            n = head;
+            head = head.next;
+            if (head == null) {
+                tail = null;
+            }   
+        }
+        return n;
+    }
+
+    public T popT() {
+        T n;
+        if(head == null) n = null;
+        else {
+            n = head.data;
+            head = head.next;
+            if (head == null) {
+                tail = null;
+            }   
+        }
+        return n;
+    }
+
+    //return bagian data dari node
+    public T remove() {
+        Node<T> n = pop();
+        if(n == null) return null;
+        else return n.data;
+    }
+
+    //@overloading method remove()
+    public boolean remove(T b) {
+        Node<T> curr = head;
+        Node<T> prev = head;
+        boolean deleted = false;
+
+        while(curr != null && !deleted) {
+            // jika setiap elemen dari data sama
+            // dengan data yang dicari
+            if(curr.data.equals(b)) {
+                deleted = true;
+                //node sebelum dilink ke node berikut dari node yang diremove
+                prev.next = curr.next; 
+                //jika node pertama yang diremove, update head ke node kedua
+                if(curr == head) head = head.next;
+                //jika list hanya memiliki satu nod, set head = null (list kosong)         
+                if(head == null) tail = null;
+            }
+            //jika belum ditemukan node yang akan diremove
+            //simpan pointer ke node saat ini, dan update
+            //pointer ke node berikutnya
+            else {
+                prev = curr;
+                curr = curr.next;
+            }
+        }
+
+        return deleted;
+    }
+
+    //mengecek apakah list kosong atau tidak
+    public boolean isEmpty() {
+        if(head == null) return true;
+        else return false;
+    }
+}
+
+
+

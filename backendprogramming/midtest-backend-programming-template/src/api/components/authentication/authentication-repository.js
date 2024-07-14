@@ -9,6 +9,12 @@ async function getUserByEmail(email) {
   return User.findOne({ email });
 }
 
+async function getUser(id) {
+  console.log(User.findById(id));
+  return User.findById(id);
+}
+
 module.exports = {
   getUserByEmail,
+  getUser,
 };
